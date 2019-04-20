@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import ButtonPage from './ButtonPage'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
-const pages = [{ url: '/', page: App }]
+const pages = [{ url: '/', page: ButtonPage }]
 
 const root = (
   <Router>
