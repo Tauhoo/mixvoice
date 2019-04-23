@@ -185,7 +185,7 @@ const videoss = [
   },
 ]
 
-const ButtonList = [{ name: 'Animation' }, { name: 'Music' }]
+const ButtonList = [{ name: 'Button' }, { name: 'Music' }]
 
 export default ({ videos }) => (
   <Container>

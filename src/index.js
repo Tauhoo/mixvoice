@@ -7,10 +7,12 @@ import 'antd/dist/antd.css'
 
 import ButtonPage from './ButtonPage'
 import AnimationPage from './AnimationPage'
+import MusicPage from './MusicPage'
 
 const pages = [
   { path: '/', exact: true, component: ButtonPage },
   { path: '/animation', exact: true, component: AnimationPage },
+  { path: '/music', exact: true, component: MusicPage },
   { path: '*', components: () => <Redirect to="/" /> },
 ]
 
