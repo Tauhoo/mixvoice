@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import Text from './Text'
 
 const Container = styled.div`
@@ -28,11 +29,15 @@ const Button = styled.div`
 
 export default ({ pages }) => (
   <Container>
-    <Button layout={0}>
-      <Text color="#fff">{pages[0].name}</Text>
-    </Button>
-    <Button layout={1}>
-      <Text color="#fff">{pages[1].name}</Text>
-    </Button>
+    <Link to={pages[0].link}>
+      <Button layout={0}>
+        <Text color="#fff">{pages[0].name}</Text>
+      </Button>
+    </Link>
+    <Link to={pages[1].link}>
+      <Button layout={1}>
+        <Text color="#fff">{pages[1].name}</Text>
+      </Button>
+    </Link>
   </Container>
 )

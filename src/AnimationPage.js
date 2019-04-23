@@ -185,7 +185,10 @@ const videoss = [
   },
 ]
 
-const ButtonList = [{ name: 'Button' }, { name: 'Music' }]
+const ButtonList = [
+  { name: 'Button', link: '/' },
+  { name: 'Music', link: '/music' },
+]
 
 export default ({ videos }) => (
   <Container>

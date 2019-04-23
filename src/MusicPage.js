@@ -6,7 +6,10 @@ import Text from './component/Text'
 import styled from 'styled-components'
 import MusicPlayer from './component/MusicPage/MusicPlayer'
 
-const ButtonList = [{ name: 'Animation' }, { name: 'Button' }]
+const ButtonList = [
+  { name: 'Animation', link: '/animation' },
+  { name: 'Button', link: '/' },
+]
 const Content = styled.div`
   width: 100%;
   display: grid;

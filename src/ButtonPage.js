@@ -6,7 +6,10 @@ import Container from './component/Container'
 import Header from './component/Header'
 import styled from 'styled-components'
 
-const ButtonList = [{ name: 'Animation' }, { name: 'Music' }]
+const ButtonList = [
+  { name: 'Animation', link: '/animation' },
+  { name: 'Music', link: '/music' },
+]
 const Content = styled.div`
   width: 100%;
 `
