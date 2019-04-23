@@ -3,17 +3,10 @@ import Text from './component/Text'
 import MusicButtonList from './component/ButtonPage/MusicButtonList'
 import PageButton from './component/PageButton'
 import Container from './component/Container'
+import Header from './component/Header'
 import styled from 'styled-components'
 
 const ButtonList = [{ name: 'Animation' }, { name: 'Music' }]
-const Header = styled.div`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #131313;
-`
 const Content = styled.div`
   width: 100%;
 `

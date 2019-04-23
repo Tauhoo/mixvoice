@@ -1,16 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ButtonPage from './ButtonPage'
 import * as serviceWorker from './serviceWorker'
-import 'antd/dist/antd.css'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Redirect, BrowserRouter as Router } from 'react-router-dom'
 
-const pages = [{ url: '/', page: ButtonPage }]
+import 'antd/dist/antd.css'
+
+import ButtonPage from './ButtonPage'
+import AnimationPage from './AnimationPage'
+
+const pages = [
+  { path: '/', exact: true, component: ButtonPage },
+  { path: '/animation', exact: true, component: AnimationPage },
+  { path: '*', components: () => <Redirect to="/" /> },
+]
 
 const root = (
   <Router>
-    {pages.map(({ url, page }) => (
-      <Route exact>{page}</Route>
+    {pages.map((page, index) => (
+      <Route key={index} {...page} />
     ))}
   </Router>
 )
