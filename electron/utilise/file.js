@@ -32,9 +32,18 @@ const writeFile = (path, value) =>
     })
   })
 
+const copyFile = (path, newPath) =>
+  new Promise((resolve, reject) => {
+    fs.copyFile(path, newPath, err => {
+      if (err) throw { status: 'error', detail: err }
+      resolve({ status: 'success' })
+    })
+  })
+
 module.exports = {
   makeFile,
   readFile,
   readDir,
   writeFile,
+  copyFile,
 }

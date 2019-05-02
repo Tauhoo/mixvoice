@@ -84,3 +84,7 @@ ipc.on('get-animation-list', getAnimationList)
 ipc.on('get-animation', getAnimation)
 
 ipc.on('update-animation', updateAnimation)
+
+const { uploadSound } = require('./feature/sound')
+
+ipc.on('upload-sound', uploadSound)

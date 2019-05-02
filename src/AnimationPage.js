@@ -7,7 +7,6 @@ import PageButton from './component/PageButton'
 import AnimationVideo from './component/AnimationPage/AnimationVideo'
 import { registerAnimation, getAllAnimation } from './utilise/request'
 import { Icon, Modal, Input } from 'antd'
-import { Link } from 'react-router-dom'
 
 const Content = styled.div`
   width: 100%;
