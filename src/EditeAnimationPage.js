@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './component/Header'
 import Container from './component/Container'
 import Text from './component/Text'
 import Editor from './component/EditeAnimationPage/Editor'
 import ColorSelector from './component/EditeAnimationPage/ColorSelector'
 import AnimationList from './component/EditeAnimationPage/AnimationList'
+import { getAnimation, updateAnimation } from './utilise/request'
 import Button from './component/Button'
 import styled from 'styled-components'
 
@@ -69,8 +70,18 @@ export default () => {
     index: 0,
     isChange: true,
   })
-  let board = datas[currentIndex.index] //[...new Array(pixel.y)].map(e => Array(pixel.x).fill(false))
+  let board = datas[currentIndex.index]
+  //[...new Array(pixel.y)].map(e => Array(pixel.x).fill(false))
   //console.log(datas[currentIndex])
+
+  useEffect(async () => {
+    let url = new URL(window.location.href)
+    let name = url.searchParams.get('name')
+    let { status, result } = await getAnimation(name)
+    if (status !== 'success') return
+    let { animation } = result
+    setDatas(animation)
+  }, [])
 
   const onChangeColor = color => setColor(!color)
 
@@ -83,6 +94,10 @@ export default () => {
     let datasCopy = [...datas]
     datasCopy[currentIndex] = board
     setDatas(datasCopy)
+    let url = new URL(window.location.href)
+    let name = url.searchParams.get('name')
+    console.log(datasCopy, name)
+    let { status } = await updateAnimation({ name, animation: datasCopy })
   }
 
   const addPicture = (pictureList, updatePicture) => {

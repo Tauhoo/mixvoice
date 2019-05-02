@@ -139,7 +139,7 @@ export default () => {
     setVideos([
       ...videos,
       {
-        attribute: { name, duration: 1 / 24 },
+        attribute: { name: name + '.json', duration: 1 / 24 },
         video: {
           attribute: {
             pixelX: 7,
@@ -172,14 +172,13 @@ export default () => {
         <AddAnimation onClick={() => setVisible(true)}>
           <Icon type="plus-circle" />
         </AddAnimation>
-        {videos.map(({ attribute, video }) => (
-          <VideoContainer>
-            <Link to="/animation/editor">
-              <AnimationVideo {...video} />
+        {videos.map(({ attribute, video }, index) => (
+          <VideoContainer key={index}>
+            <AnimationVideo {...video} />
+            <a href={`/animation/editor?name=${attribute.name}`}>
               <Text size={1}>{attribute.name}</Text>
-              <br />
-              <Text>{attribute.duration} sec</Text>
-            </Link>
+            </a>
+            <Text>{attribute.duration} sec</Text>
           </VideoContainer>
         ))}
       </Content>

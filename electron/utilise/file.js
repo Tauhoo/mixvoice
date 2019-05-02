@@ -24,8 +24,17 @@ const readDir = path =>
     })
   })
 
+const writeFile = (path, value) =>
+  new Promise((resolve, reject) => {
+    fs.writeFile(path, value, err => {
+      if (err) throw { status: 'error' }
+      resolve({ status: 'success' })
+    })
+  })
+
 module.exports = {
   makeFile,
   readFile,
   readDir,
+  writeFile,
 }

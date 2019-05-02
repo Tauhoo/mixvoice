@@ -29,15 +29,15 @@ const Button = styled.div`
 
 export default ({ pages }) => (
   <Container>
-    <Link to={pages[0].link}>
+    <a href={pages[0].link}>
       <Button layout={0}>
         <Text color="#fff">{pages[0].name}</Text>
       </Button>
-    </Link>
-    <Link to={pages[1].link}>
+    </a>
+    <a href={pages[1].link}>
       <Button layout={1}>
         <Text color="#fff">{pages[1].name}</Text>
       </Button>
-    </Link>
+    </a>
   </Container>
 )

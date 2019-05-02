@@ -70,8 +70,17 @@ app.on('activate', function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-const { registerAnimation, getAnimationList } = require('./feature/animation')
+const {
+  registerAnimation,
+  getAnimationList,
+  getAnimation,
+  updateAnimation,
+} = require('./feature/animation')
 
 ipc.on('register-animation', registerAnimation)
 
 ipc.on('get-animation-list', getAnimationList)
+
+ipc.on('get-animation', getAnimation)
+
+ipc.on('update-animation', updateAnimation)

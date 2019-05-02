@@ -7,3 +7,5 @@ const request = (route, value) =>
 
 export const registerAnimation = value => request('register-animation', value)
 export const getAllAnimation = () => request('get-animation-list', null)
+export const getAnimation = name => request('get-animation', { name })
+export const updateAnimation = data => request('update-animation', data)
