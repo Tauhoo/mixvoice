@@ -27,6 +27,7 @@
     "eslint-plugin-react": "7.12.4",
     "file-loader": "2.0.0",
     "foreman": "^3.0.1",
+    "fs": "^0.0.1-security",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
@@ -62,7 +63,7 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "main": "electron/starter.js",
-  "homepage": "./",
+  "homepage": ".",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",

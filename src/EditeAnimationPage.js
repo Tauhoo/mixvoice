@@ -79,7 +79,7 @@ export default () => {
     board[y][x] = color
   }
 
-  const onSave = () => {
+  const onSave = async () => {
     let datasCopy = [...datas]
     datasCopy[currentIndex] = board
     setDatas(datasCopy)

@@ -1,5 +1,7 @@
 const electron = require('electron')
 // Module to control application life.
+const ipc = electron.ipcMain
+
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
@@ -18,9 +20,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: false,
-      contextIsolation: true,
-      sandbox: true,
-      webSecurity: false,
+      preload: __dirname + '/preload.js',
     },
   })
 
@@ -70,3 +70,8 @@ app.on('activate', function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+const { registerAnimation, getAnimationList } = require('./feature/animation')
+
+ipc.on('register-animation', registerAnimation)
+
+ipc.on('get-animation-list', getAnimationList)
