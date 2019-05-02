@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const Pixel = styled.div`
@@ -7,8 +7,21 @@ const Pixel = styled.div`
   height: ${({ height, pixelY }) => height / pixelY}px;
 `
 //{ onHover, width, height, pixelY, pixelX, color }
-export default ({ onMouseMove, width, height, pixelY, pixelX, color }) => {
-  const [isCheck, setIsCheck] = useState(false)
+export default ({
+  onMouseMove,
+  width,
+  height,
+  pixelY,
+  pixelX,
+  color,
+  isChange,
+}) => {
+  const [isCheck, setIsCheck] = useState(color)
+
+  useEffect(() => {
+    if (!isChange) setIsCheck(color)
+  })
+
   return (
     <Pixel
       isCheck={isCheck}

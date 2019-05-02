@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import PixelEditor from './PixelInEditor'
+
 const Container = styled.div`
   width: ${({ width }) => width + 4}px;
   height: ${({ height }) => height + 4}px;
@@ -11,13 +12,31 @@ const Container = styled.div`
   box-sizing: border-box;
 `
 
-export default ({ height, width, pixelY, pixelX, onDraw }) => {
-  let data = []
+export default ({
+  height,
+  width,
+  pixelY,
+  pixelX,
+  onDraw,
+  color,
+  datas,
+  isChange,
+  updateChangePage,
+  index,
+}) => {
   let isClick = false
-  const onMouseMove = indexs => setIsCheck => () => {
-    if (onDraw !== undefined) onDraw(indexs)
+  let ink = color
+
+  useEffect(() => {
+    ink = color
+  })
+  if (!isChange) updateChangePage({ index, isChange: true })
+
+  const onMouseMove = indexs => (setIsCheck, key) => () => {
     if (!isClick) return
-    setIsCheck(true)
+    if (onDraw !== undefined) onDraw(indexs)
+
+    setIsCheck(ink)
   }
   return (
     <Container
@@ -38,6 +57,7 @@ export default ({ height, width, pixelY, pixelX, onDraw }) => {
     >
       {(() => {
         let result = []
+        //console.log(datas)
         let key = 0
         for (let i = 0; i < pixelY; i++)
           for (let j = 0; j < pixelX; j++) {
@@ -49,6 +69,8 @@ export default ({ height, width, pixelY, pixelX, onDraw }) => {
                 width={width}
                 pixelY={pixelY}
                 pixelX={pixelX}
+                color={datas[i][j]}
+                isChange={isChange}
               />,
             )
           }

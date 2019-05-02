@@ -24,8 +24,14 @@ const render = data => {
   return result
 }
 
-export default ({ height, width, data, pixelX, pixelY }) => (
-  <Container height={height} width={width} pixelX={pixelX} pixelY={pixelY}>
+export default ({ height, width, data, pixelX, pixelY, onClick }) => (
+  <Container
+    onClick={onClick}
+    height={height}
+    width={width}
+    pixelX={pixelX}
+    pixelY={pixelY}
+  >
     {render(data)}
   </Container>
 )
