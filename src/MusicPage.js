@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PageButton from './component/PageButton'
 import Container from './component/Container'
 import Header from './component/Header'
 import Text from './component/Text'
 import styled from 'styled-components'
 import MusicPlayer from './component/MusicPage/MusicPlayer'
-import { uploadSound } from './utilise/request'
+import { uploadSound, getSoundList } from './utilise/request'
 import { Upload, Icon } from 'antd'
 
 const ButtonList = [
@@ -44,56 +44,22 @@ const MusicContainer = styled.div`
   justify-items: center;
   align-items: center;
 `
-const musics = [
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-  {
-    name: 'ice',
-    filename: 'ice.png',
-    duration: 10,
-  },
-]
 
 export default () => {
+  const [musics, setMusics] = useState([])
+  useEffect(async () => {
+    let { status, result } = await getSoundList()
+    setMusics(result)
+  }, [])
+
   const customRequest = ({ file, onSuccess }) => {
     setTimeout(async () => {
       onSuccess('ok')
       if (file.type !== 'audio/wav') return
       let data = { currentPath: file.path, filename: file.name }
       let { status } = await uploadSound(data)
+      if (status !== 'success') return
+      setMusics([...musics, file.name])
     }, 0)
   }
   return (
@@ -115,11 +81,10 @@ export default () => {
             <Icon type="plus" />
           </UploadPad>
         </Upload>
-        {musics.map(({ name, filename, duration }) => (
+        {musics.map(filename => (
           <MusicContainer>
-            <MusicPlayer filename={filename} duration={duration} />
-            <Text size={1}>{name}</Text>
-            <Text>{duration} s</Text>
+            <MusicPlayer filename={filename} />
+            <Text size={1}>{filename}</Text>
           </MusicContainer>
         ))}
       </Content>

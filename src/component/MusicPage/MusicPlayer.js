@@ -29,9 +29,17 @@ function useInterval(callback, delay) {
   }, [delay])
 }
 
-export default () => {
+export default ({ filename }) => {
   const [isPlay, setIsPlay] = useState(false)
   const [percent, setPercent] = useState(0)
+  const [music, setMusic] = useState(new Audio('./file/music/' + filename))
+
+  const p = new Audio('./file/music/' + filename)
+  p.load()
+  p.play()
+  useEffect(() => {
+    console.log(music)
+  }, [])
 
   useInterval(
     () => {
@@ -46,6 +54,9 @@ export default () => {
   )
 
   const onClick = () => {
+    //music.play()
+    console.log()
+
     setIsPlay(!isPlay)
   }
 

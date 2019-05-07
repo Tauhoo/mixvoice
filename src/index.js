@@ -12,9 +12,9 @@ import EditeAnimationPage from './EditeAnimationPage'
 
 const pages = [
   { path: '/', exact: true, component: ButtonPage },
-  { path: '/animation', exact: true, component: AnimationPage },
+  /*{ path: '/animation', exact: true, component: AnimationPage },
   { path: '/music', exact: true, component: MusicPage },
-  { path: '/animation/editor', exact: true, component: EditeAnimationPage },
+  { path: '/animation/editor', exact: true, component: EditeAnimationPage },*/
   { path: '*', components: () => <Redirect to="/" /> },
 ]
 

@@ -1,5 +1,5 @@
 const path = require('path')
-const { copyFile } = require('../utilise/file')
+const { copyFile, readDir } = require('../utilise/file')
 
 const uploadSound = async (event, { currentPath, filename }) => {
   try {
@@ -15,6 +15,21 @@ const uploadSound = async (event, { currentPath, filename }) => {
   }
 }
 
+const getSoundList = async (event, arg) => {
+  try {
+    const Path = path.resolve(__dirname + '/../../file/music/')
+    let { status, result } = await readDir(Path)
+    if (status !== 'success') {
+      event.returnValue = { status: 'fail' }
+      return
+    }
+    event.returnValue = { status: 'success', result }
+  } catch (err) {
+    event.returnValue = { status: 'error', detail: err }
+  }
+}
+
 module.exports = {
   uploadSound,
+  getSoundList,
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import Text from './component/Text'
 import MusicButtonList from './component/ButtonPage/MusicButtonList'
-import PageButton from './component/PageButton'
 import Container from './component/Container'
 import Header from './component/Header'
 import styled from 'styled-components'
@@ -25,11 +24,8 @@ export default () => {
         </Text>
       </Header>
       <Content>
-        <MusicButtonList amount={10} />
+        <MusicButtonList amount={11} />
       </Content>
-      <Footer>
-        <PageButton pages={ButtonList} />
-      </Footer>
     </Container>
   )
 }

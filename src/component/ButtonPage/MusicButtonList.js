@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MusicButton from './MusicButton'
 import styled from 'styled-components'
+import { getFrez } from '../../utilise/request'
+import { get } from 'https'
 
 const Container = styled.div`
   padding: 80px;
@@ -25,15 +27,25 @@ const List = styled.div`
   }
 `
 
-const list = amount => {
+const list = (amount, frezs) => {
   let list = []
   for (let number = 1; number <= amount; number++)
-    list.push(<MusicButton number={number} key={number} />)
+    list.push(
+      <MusicButton number={number} key={number} Frez={frezs[number - 1]} />,
+    )
   return list
 }
 
-export default ({ amount }) => (
-  <Container>
-    <List>{list(amount)}</List>
-  </Container>
-)
+export default ({ amount }) => {
+  const [frezs, setFrezs] = useState(new Array(11).fill(0))
+  useEffect(async () => {
+    let { status, result } = await getFrez()
+    console.log(result)
+    setFrezs(result.list)
+  }, [])
+  return (
+    <Container>
+      <List>{list(amount, frezs)}</List>
+    </Container>
+  )
+}
