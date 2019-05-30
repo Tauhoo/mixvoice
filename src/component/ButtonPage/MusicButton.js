@@ -4,6 +4,8 @@ import Text from '../Text'
 import { Modal, Col, Row, InputNumber, Slider } from 'antd'
 import { uploadFrez } from '../../utilise/request'
 
+const names = [1, 2, 3, 4, 5, 6, 7, 8, 9, '*', '#', 0]
+
 const Container = styled.div`
   border-radius: 50px;
   width: 100px;
@@ -31,6 +33,7 @@ export default ({ number, Frez }) => {
     let result = await uploadFrez({ number, frez }).then(res => res)
     setVisible(false)
   }
+  if (number === 11) return <></>
   return (
     <>
       <Modal
@@ -42,16 +45,16 @@ export default ({ number, Frez }) => {
         <Row>
           <Col span={12}>
             <Slider
-              min={1}
-              max={1000}
+              min={0}
+              max={3000}
               onChange={value => setFrez(value)}
               value={typeof frez === 'number' ? frez : 0}
             />
           </Col>
           <Col span={4}>
             <InputNumber
-              min={1}
-              max={1000}
+              min={0}
+              max={3000}
               style={{ marginLeft: 16 }}
               value={frez}
               onChange={value => setFrez(value)}
@@ -61,7 +64,7 @@ export default ({ number, Frez }) => {
       </Modal>
       <Container onClick={() => setVisible(true)}>
         <Text color="#fff" size={2}>
-          {number}
+          {names[number - 1]}
         </Text>
       </Container>
     </>

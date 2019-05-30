@@ -82,4 +82,4 @@ while(1) :
         print(buttons)
         boardOutput.usb_write(10,index=key,value=buttons[key-1])
         lastKey = key
-    time.sleep(1/200)
+    time.sleep(1/250)
